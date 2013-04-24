@@ -1,5 +1,8 @@
 Revision history for Perl extension WebService-Yahoo-BOSS.
 
+1.02  Thu Apr 24 2013
+    - Added http_response method to allow instrospection e.g., of errors
+
 1.01  Thu Apr 24 2013
     - Updated MANIFEST and added MANIFEST.SKIP
 

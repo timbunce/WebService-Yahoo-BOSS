@@ -96,6 +96,11 @@ has 'ua' => (
     }
 );
 
+# last HTTP::Response e.g. to enable introspection of error details
+has 'http_response' => (
+    is => 'rw'
+);
+
 
 sub _create_boss_request {
     my ($self, $api_path, $args) = @_;
@@ -123,6 +128,7 @@ sub _perform_boss_request {
     my ($self, $request) = @_;
 
     my $res = $self->ua->get( $request->to_url );
+    $self->http_response($res);
     unless ( $res->is_success ) {
         die sprintf "%s requesting %s: %s",
             $res->status_line, $request->to_url, Dumper($res);
