@@ -15,6 +15,7 @@ WriteMakefile(
         'Net::OAuth'       => 0.27,
         'Data::UUID'       => 1.217,
         'JSON::XS'         => 2.32,
+        'Test::Most'       => 0,
     },
     ABSTRACT_FROM => 'lib/WebService/Yahoo/BOSS.pm',
     AUTHOR        => 'Fred Moyer <fred@slwifi.com>'

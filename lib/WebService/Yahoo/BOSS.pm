@@ -58,7 +58,7 @@ use Carp qw(croak);
 use WebService::Yahoo::BOSS::Response;
 
 
-our $VERSION = '1.01';
+our $VERSION = '1.02';
 
 my $Ug = Data::UUID->new;
 
@@ -68,9 +68,11 @@ $Net::OAuth::PROTOCOL_VERSION = Net::OAuth::PROTOCOL_VERSION_1_0A;
 =head2 new
 
     $boss = WebService::Yahoo::BOSS->new(
+
         # required
         ckey => $ckey,
         csecret => $csecret,
+
         # optional
         url => 'http://yboss.yahooapis.com',
         ua => LWP::UserAgent->new(...),
@@ -208,9 +210,9 @@ sub PlaceFinder {
 
 =head1 SEE ALSO
 
- http://developer.yahoo.com/search/boss/boss_api_guide
+L<http://developer.yahoo.com/search/boss/boss_api_guide>
 
- L<Google::Search>
+L<Google::Search>
 
 =head1 AUTHOR
 
