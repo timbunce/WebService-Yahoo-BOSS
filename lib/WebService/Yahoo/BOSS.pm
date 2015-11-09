@@ -14,6 +14,11 @@ WebService::Yahoo::BOSS - Interface to the Yahoo BOSS Search API
 
     $response = $Boss->PlaceFinder( q => 'Fleet Street, London', ... );
 
+    
+    foreach my $result (@{ $response->results }) {
+        print $result->title, "\n";
+    }
+
 
 =head1 DESCRIPTION
 
@@ -58,7 +63,7 @@ use Carp qw(croak);
 use WebService::Yahoo::BOSS::Response;
 
 
-our $VERSION = '1.02';
+our $VERSION = '1.03';
 
 my $Ug = Data::UUID->new;
 
@@ -157,6 +162,8 @@ sub ask_boss {
 
 =head2 Web
 
+Yahoo web search index results with basic url, title, and abstract data.
+
     $response = $Boss->Web( q       => 'microbrew award winner 2010',
                             start   => 0,
                             exclude => 'pilsner', );
@@ -183,6 +190,35 @@ sub Web {
     return $self->ask_boss('/ysearch/web', \%args, 'WebService::Yahoo::BOSS::Response::Web');
 }
 
+=head2 Images
+
+Image search. Image Search includes images from the Yahoo Image Search index and Flickr.
+
+    $response = $Boss->Images( q       => 'microbrew award winner 2010',
+                            start   => 0,
+                            exclude => 'pilsner', );
+
+For more information about the arguments and result attributes see
+L<https://developer.yahoo.com/boss/search/boss_api_guide/image.html>
+
+The results are L<WebService::Yahoo::BOSS::Response::Images> objects.
+
+=cut
+
+sub Images {
+    my ( $self, %args ) = @_;
+
+    croak "q parameter not defined"
+        unless defined $args{q};
+
+    $args{count} ||= 10;
+    $args{filter} ||= '-porn';
+    $args{format} ||= 'json';
+    croak 'only json format supported'
+        unless $args{format} eq 'json';
+
+    return $self->ask_boss('/ysearch/images', \%args, 'WebService::Yahoo::BOSS::Response::Images');
+}
 
 =head2 PlaceFinder
 
@@ -218,7 +254,7 @@ L<Google::Search>
 
 "Fred Moyer", E<lt>fred@slwifi.comE<gt>
 
-The PlaceFinder service, and general refactoring and optimization, by Tim Bunce.
+The PlaceFinder service, and general refactoring and optimization, by Tim Bunce. Image search by Runar Buvik.
 
 =head1 COPYRIGHT AND LICENSE
 
