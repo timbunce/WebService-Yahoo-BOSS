@@ -8,11 +8,11 @@ WebService::Yahoo::BOSS - Interface to the Yahoo BOSS Search API
 
     use WebService::Yahoo::BOSS;
 
-    $Boss = WebService::Yahoo::BOSS->new( ckey => $ckey, csecret => $csecret );
+    $boss = WebService::Yahoo::BOSS->new( ckey => $ckey, csecret => $csecret );
 
-    $response = $Boss->Web( q => 'microbrew award winner 2010', ... );
+    $response = $boss->Web( q => 'microbrew award winner 2010', ... );
 
-    $response = $Boss->PlaceFinder( q => 'Fleet Street, London', ... );
+    $response = $boss->PlaceFinder( q => 'Fleet Street, London', ... );
 
     
     foreach my $result (@{ $response->results }) {
@@ -164,7 +164,7 @@ sub ask_boss {
 
 Yahoo web search index results with basic url, title, and abstract data.
 
-    $response = $Boss->Web( q       => 'microbrew award winner 2010',
+    $response = $boss->Web( q       => 'microbrew award winner 2010',
                             start   => 0,
                             exclude => 'pilsner', );
 
@@ -194,7 +194,7 @@ sub Web {
 
 Image search. Image Search includes images from the Yahoo Image Search index and Flickr.
 
-    $response = $Boss->Images( q       => 'microbrew award winner 2010',
+    $response = $boss->Images( q       => 'microbrew award winner 2010',
                             start   => 0,
                             exclude => 'pilsner', );
 
@@ -249,6 +249,10 @@ sub PlaceFinder {
 L<http://developer.yahoo.com/search/boss/boss_api_guide>
 
 L<Google::Search>
+
+=head1 SOURCE CODE
+
+Development version of the source code is available at L<https://github.com/runarbu/WebService-Yahoo-BOSS>. Patches are welcome.
 
 =head1 AUTHOR
 
