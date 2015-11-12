@@ -1,5 +1,10 @@
 Revision history for Perl extension WebService-Yahoo-BOSS.
 
+1.03  Mon Nov 10 2015
+    - Added support for image search [Runar Buvik]
+    - Minor documentation tweaks [Runar Buvik]
+    - Removed broken test [Runar Buvik]
+
 1.02  Thu Apr 25 2013
     - Added http_response method to allow instrospection e.g., of errors
     - Added Test::Most prerequisite.
